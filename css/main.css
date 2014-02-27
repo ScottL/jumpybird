@@ -29,27 +29,32 @@ body{
 	position: absolute;
 	
 	background-image: url('../assets/background.png');
+	background-color: lightblue;
 	background-repeat: repeat-x;
 	background-position: 0% 100%;
 }
 
 #sky{
 	width: 100%;
-	position: absolute;
-	
+	position: absolute;	
 }
 
 #ceiling{
 	width: 100%;
 	position: absolute;
 	background-image: url('../assets/ceiling.png');
-	top: 0;
+	background-repeat: repeat-x;
+	height: 30px;
 }
 
 #ground{
 	width: 100%;
 	position: absolute;
 	background-image: url('../assets/ground.png');
+	background-repeat: repeat-x;
 	bottom: 0;
+	height: 30px;
 	
 }
+
+
