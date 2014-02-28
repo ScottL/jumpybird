@@ -48,8 +48,8 @@ body{
 	position: absolute;
 	background-image: url('../assets/ceiling.png');
 	background-repeat: repeat-x;
-	height: 40px;
-	top: -1px;
+	height: 30px;
+	top: 0;
 	
 	-webkit-animation: ceilingMove 5000ms linear infinite;
    animation: ceilingMove 5000ms linear infinite;
@@ -61,8 +61,10 @@ body{
 	background-image: url('../assets/ground.png');
 	background-repeat: repeat-x;
 	bottom: 0;
-	height: 20px;
+	height: 30px;
 	
+	-webkit-animation: groundMove 5000ms linear infinite;
+   animation: groundMove 5000ms linear infinite;
 }
 
 #sprite{
@@ -70,11 +72,10 @@ body{
 }
 
 .spriteIcon{
-	width: 34px;
-	height: 24px;
+	width: 33px;
+	height: 41px;
 	position: absolute;
 	background-image: url('../assets/sprite.png');
- 
 }
 
 
@@ -82,7 +83,18 @@ body{
    0% { background-position: 0px 0px; }
    100% { background-position: -400px 0px; }
 }
+
 @-webkit-keyframes ceilingMove {
+   0% { background-position: 0px 0px; }
+   100% { background-position: -400px 0px; }
+}
+
+@keyframes groundMove {
+   0% { background-position: 0px 0px; }
+   100% { background-position: -400px 0px; }
+}
+
+@-webkit-keyframes groundMove {
    0% { background-position: 0px 0px; }
    100% { background-position: -400px 0px; }
 }
