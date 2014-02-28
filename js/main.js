@@ -13,6 +13,8 @@ $(document).ready(function(){
 
 function startScreen(){
 
+
+
 }
 
 function click(){
@@ -23,6 +25,7 @@ function click(){
 }
 
 function gameStart(){
+
 
 }
 

@@ -57,4 +57,15 @@ body{
 	
 }
 
+#sprite{
+	position: 0px 0px;
+}
+
+.spriteIcon{
+	width: 34px;
+	height: 24px;
+	position: absolute;
+	background-image: url('../assets/sprite.png');
+ 
+}
 
