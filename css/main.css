@@ -3,6 +3,8 @@
 
 
 */
+
+
 html{
 	height: 100%
 }
@@ -25,7 +27,7 @@ body{
 
 #background{
 	width: 100%;
-	height: 100%;
+	height: 90%;
 	position: absolute;
 	
 	background-image: url('../assets/background.png');
@@ -36,7 +38,9 @@ body{
 
 #sky{
 	width: 100%;
+	height: 100%;
 	position: absolute;	
+
 }
 
 #ceiling{
@@ -44,7 +48,11 @@ body{
 	position: absolute;
 	background-image: url('../assets/ceiling.png');
 	background-repeat: repeat-x;
-	height: 30px;
+	height: 40px;
+	top: -1px;
+	
+	-webkit-animation: ceilingMove 5000ms linear infinite;
+   animation: ceilingMove 5000ms linear infinite;
 }
 
 #ground{
@@ -67,5 +75,15 @@ body{
 	position: absolute;
 	background-image: url('../assets/sprite.png');
  
+}
+
+
+@keyframes ceilingMove {
+   0% { background-position: 0px 0px; }
+   100% { background-position: -400px 0px; }
+}
+@-webkit-keyframes ceilingMove {
+   0% { background-position: 0px 0px; }
+   100% { background-position: -400px 0px; }
 }
 

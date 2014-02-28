@@ -13,7 +13,8 @@ $(document).ready(function(){
 
 function startScreen(){
 
-
+	$(".animated").css('animation-play-state', 'running');
+	$(".animated").css('-webkit-animation-play-state', 'running');
 
 }
 
@@ -25,7 +26,6 @@ function click(){
 }
 
 function gameStart(){
-
 
 }
 
