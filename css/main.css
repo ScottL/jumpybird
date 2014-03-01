@@ -71,14 +71,14 @@ body{
 }
 
 .spriteIcon{
-	width: 33px;
-	height: 41px;
+	width: 50px;
+	height: 50px;
 	position: absolute;
-	background-image: url('../assets/sprite.png');
+	background-image: url('../assets/sprite.gif');
 	
-	/* temporary animation */
+	/* temporary animation 
 	animation: spriteMove 5000ms linear infinite;
-	-webkit-animation: spriteMove 5000ms linear infinite;
+	-webkit-animation: spriteMove 5000ms linear infinite; */
 }
 
 
