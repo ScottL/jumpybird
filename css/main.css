@@ -66,7 +66,8 @@ body{
 }
 
 #sprite{
-	position: 100px 100px;
+	left: 150px;
+	top: 300px;
 }
 
 .spriteIcon{
@@ -74,6 +75,10 @@ body{
 	height: 41px;
 	position: absolute;
 	background-image: url('../assets/sprite.png');
+	
+	/* temporary animation */
+	animation: spriteMove 5000ms linear infinite;
+	-webkit-animation: spriteMove 5000ms linear infinite;
 }
 
 
@@ -95,6 +100,16 @@ body{
 @-webkit-keyframes groundMove {
    0% { background-position: 0px 0px; }
    100% { background-position: -400px 0px; }
+}
+
+@keyframes spriteMove {
+   0% { background-position: 0px 0px; }
+   100% { background-position: 0px 100px; }
+}
+
+@-webkit-keyframes spriteMove {
+   0% { background-position: 0px 0px; }
+   100% { background-position: 0px 100px; }
 }
 
 .notransition {
