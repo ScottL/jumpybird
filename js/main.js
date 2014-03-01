@@ -1,7 +1,9 @@
 /* main.js
 
 */
-var FRAME_TIME = 1000 / 30; // 30 FPS
+
+/* Variables ********/
+var FRAME_TIME = 1000 / 60; // 60 FPS
 var startScreenState = 0;
 var gameRunningState = 1;
 var currentState;
@@ -11,13 +13,16 @@ var ceiling = document.getElementById("ceiling");
 var sprite = document.getElementById("sprite");
  
 var position = 280;
-/*var speed = 0;
-var jump = -5; // -6 or -8
-var gravity = 0.2; // 0.5 */
 var speed = 0;
-var jump = -10
-var gravity = 0.5
+var jump = -6; // -6 or -8
+var gravity = 0.3; // 0.5 
 
+/*var speed = 0;
+var jump = -10
+var gravity = 0.5*/
+
+
+/* Functions ********/
 $(document).on("mousedown", leftClick);
 $(document).ready(function(){
 	console.log( "ready!" );
@@ -35,7 +40,7 @@ function startScreen(){
 	
 	ground.style.webkitAnimationPlayState = 'running';
 	ceiling.style.webkitAnimationPlayState = 'running';
-	sprite.style.webkitAnimationPlayState = 'paused';
+	sprite.style.webkitAnimationPlayState = 'paused'; //no sprite webkit animation for now
 }
 
 /* Left screen click action */
