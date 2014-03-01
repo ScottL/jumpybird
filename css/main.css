@@ -6,11 +6,11 @@
 
 
 html{
-	height: 100%
+	height: 100%;
 }
 
 body{
-	height: 100%
+	height: 100%;
 }
 
 #screencontainer{
@@ -50,9 +50,8 @@ body{
 	background-repeat: repeat-x;
 	height: 30px;
 	top: 0;
-	
+	animation: ceilingMove 5000ms linear infinite;
 	-webkit-animation: ceilingMove 5000ms linear infinite;
-   animation: ceilingMove 5000ms linear infinite;
 }
 
 #ground{
@@ -60,15 +59,14 @@ body{
 	position: absolute;
 	background-image: url('../assets/ground.png');
 	background-repeat: repeat-x;
-	bottom: 0;
+	bottom: 30px;
 	height: 30px;
-	
+	animation: groundMove 5000ms linear infinite;
 	-webkit-animation: groundMove 5000ms linear infinite;
-   animation: groundMove 5000ms linear infinite;
 }
 
 #sprite{
-	position: 0px 0px;
+	position: 100px 100px;
 }
 
 .spriteIcon{
@@ -97,5 +95,13 @@ body{
 @-webkit-keyframes groundMove {
    0% { background-position: 0px 0px; }
    100% { background-position: -400px 0px; }
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
 }
 

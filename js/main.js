@@ -3,16 +3,19 @@
 */
 
 $(document).ready(function(){
+	console.log( "ready!" );
+	// setup and initilize
 
-// setup and initilize
-
-// show ready / splash screem
+	
+	// show ready / splash screem
 	startScreen();
-
 });
 
 function startScreen(){
-
+	//$('ground').addClass('notransition'); // to remove transition
+	//$('ceiling').addClass('notransition'); // to remove transition
+	//var elem = document.getElementById("ground");
+	//elem.style.webkitAnimationPlayState = 'paused';
 
 }
 
