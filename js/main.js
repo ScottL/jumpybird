@@ -2,7 +2,7 @@
 
 */
 
-/* Variables ********/
+/******* Variables ********/
 var FRAME_TIME = 1000 / 60; // 60 FPS
 var startScreenState = 0;
 var gameRunningState = 1;
@@ -16,20 +16,36 @@ var position = 280;
 var speed = 0;
 var jump = -6; // -6 or -8
 var gravity = 0.3; // 0.5 
-
 /*var speed = 0;
 var jump = -10
 var gravity = 0.5*/
 
+var boundingBox = sprite.getBoundingClientRect();
 
-/* Functions ********/
-$(document).on("mousedown", leftClick);
+
+/******* Functions ********/
 $(document).ready(function(){
 	console.log( "ready!" );
 	// setup and initilize
 	// show start / splash screen
 	
 	startScreen();
+});
+
+/* Mouse click events */
+$(document).mousedown(function(event) {
+    switch (event.which) {
+		case 1:
+            leftClick();
+            break;
+        case 2:
+            //alert('Middle mouse button pressed');
+            break;
+        case 3:
+            //alert('Right mouse button pressed');
+            break;
+        default:
+    }
 });
 
 /* Start / Spash screen. Called when document is ready */
@@ -52,7 +68,7 @@ function leftClick(){
 	if (currentState == startScreenState){
 		gameStart();
 	} else if (currentState == gameRunningState){
-		jumpUp();
+		spriteJump();
 	}
 }
 
@@ -60,12 +76,12 @@ function leftClick(){
 function gameStart(){
 	currentState = gameRunningState;
 	
-	jumpUp();
+	spriteJump();
 	setInterval( gameThread, FRAME_TIME );
 }
 
 /* Change positions to update sprite */
-function jumpUp(){
+function spriteJump(){
 	// action of sprite will be here
 	speed = jump;
 
@@ -85,3 +101,4 @@ function gameThread(){
 	position += speed;
 	sprite.style.top = position + 'px';
 }
+
