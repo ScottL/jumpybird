@@ -48,7 +48,7 @@ body{
 	position: absolute;
 	background-image: url('../assets/ceiling.png');
 	background-repeat: repeat-x;
-	height: 30px;
+	height: 16px;
 	top: 0;
 	animation: ceilingMove 5000ms linear infinite;
 	-webkit-animation: ceilingMove 5000ms linear infinite;
