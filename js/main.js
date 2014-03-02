@@ -120,6 +120,11 @@ function detectCollision(){
 	//console.log("top: " + x);
 	console.log("ceiling: " + ceiling.getBoundingClientRect().bottom);
 
+	if( bottom >= ground.getBoundingClientRect().top){
+		//ground collision
+		startScreen();
+		clearInterval(gamethread);
+	}
 
 }
 
