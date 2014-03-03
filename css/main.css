@@ -81,6 +81,16 @@ body{
 	-webkit-animation: spriteMove 5000ms linear infinite; */
 }
 
+#pipe{
+	width: 52px;
+	height: 100%;
+	position: absolute;
+	
+	background-image: url('../assets/pipes.png');
+	
+}
+
+
 
 @keyframes ceilingMove {
    0% { background-position: 0px 0px; }

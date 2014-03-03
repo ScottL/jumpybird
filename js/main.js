@@ -58,6 +58,9 @@ function startScreen(){
 	ground.style.webkitAnimationPlayState = 'running';
 	ceiling.style.webkitAnimationPlayState = 'running';
 	sprite.style.webkitAnimationPlayState = 'paused'; //no sprite webkit animation for now
+	
+	
+
 }
 
 /* Left screen click action */
@@ -102,29 +105,39 @@ function gameThread(){
 	position += speed;
 	sprite.style.top = position + 'px';
 	detectCollision();
-	console.log( "detect" )
+	//console.log( "detect" )
 }
 
 /* Sprite colliaion with floor, ceiling, or pipes
  using boounding boxes */
 function detectCollision(){
 	var boundingBox = sprite.getBoundingClientRect();
-	var box2 = ceiling.getBoundingClientRect();
+	
 	left = boundingBox.left;
 	right = boundingBox.right;
 	bottom = boundingBox.bottom;
-	top = boundingBox.top;
+	spriteTop = bottom - 50;
 	
-	//x = bottom - 50;
+	spriteTop = bottom - 50;
 	console.log("bottom: " + bottom );
-	//console.log("top: " + x);
-	console.log("ceiling: " + ceiling.getBoundingClientRect().bottom);
+	console.log("top: " + spriteTop);
+	console.log("ceiling: " + ceiling.getBoundingClientRect().bottom ); 
 
 	if( bottom >= ground.getBoundingClientRect().top){
-		//ground collision
-		startScreen();
-		clearInterval(gamethread);
+		//ground collision - game over
+		gameOver();
 	}
+	
+	if( spriteTop <= ceiling.getBoundingClientRect().bottom){
+		console.log( "collide top" )
+		//ceiling collision - set speed to prevent jumping further
+		speed = 0;
+	}
+}
 
+/* End the game when collision occurs */
+function gameOver(){
+		clearInterval(gamethread);
+		startScreen();
 }
 
