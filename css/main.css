@@ -90,7 +90,18 @@ body{
 	
 }
 
+.pipeBottom{
+	width: 52px;
+	position: absolute;
 
+}
+
+
+.pipeTop{
+	width: 52px;
+	 position: absolute;
+
+}
 
 @keyframes ceilingMove {
    0% { background-position: 0px 0px; }
