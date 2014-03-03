@@ -94,13 +94,14 @@ body{
 	width: 52px;
 	position: absolute;
 
+	background-image: url('../assets/pipe_bottom.png');
 }
 
 
 .pipeTop{
 	width: 52px;
-	 position: absolute;
-
+	position: absolute;
+	background-image: url('../assets/pipe_top.png');
 }
 
 @keyframes ceilingMove {

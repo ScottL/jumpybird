@@ -141,3 +141,9 @@ function gameOver(){
 		startScreen();
 }
 
+/* Pipes */
+function drawPipes(){
+
+
+}
+
