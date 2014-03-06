@@ -23,7 +23,7 @@ var gravity = 0.3; // 0.5
 var jump = -10
 var gravity = 0.5*/
 
-var pipeHeight = 100;
+var pipeHeight = 100; //space to fly through
 var pipeWidth = 52;
 var pipeQueue = new Array();
 
@@ -151,19 +151,16 @@ function drawPipes(){
 	limit = 500 - pipeHeight - (space * 2); 
 	bottomheight = Math.floor((Math.random() * limit) + space);
 	topheight = (500 - pipeHeight) - bottomheight;*/
-	space = 80;
-	limit = 500 - pipeHeight - (space); 
-	bottomheight = Math.floor((Math.random() * limit) + space);
-	topheight = 500 - bottomheight - pipeHeight;
+	
+	
+	screenHeight = document.getElementById('sky').clientHeight;
+	minHeight = 60;  //minimum pipe height  
+	limit = screenHeight - pipeHeight - (minHeight);
+	
+	bottomheight = Math.floor((Math.random() * limit) + minHeight);  
+	topheight = screenHeight - bottomheight - pipeHeight;
 	
 	newpipe = $('<div class="pipe animated"><div class="pipeBottom" style="height: ' + bottomheight + 'px;"></div><div class="pipeTop" style="height: ' + topheight + 'px;"></div></div>');
-	
-	/*
-	space = 50;
-	limit = 400 - pipeHeight - (space * 2); 
-	bottomheight = Math.floor((Math.random() * limit) + space);
-	topheight = (400 - pipeHeight) - bottomheight;
-	*/
 	
 	$("#sky").append(newpipe);
 }
