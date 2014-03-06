@@ -87,7 +87,9 @@ body{
 	position: absolute;
 	
 	background-image: url('../assets/pipes.png');
-	
+
+	-webkit-animation: pipeMove 5000ms linear infinite;
+	animation: pipeMove 5000ms linear infinite;
 }
 
 .pipeBottom{
@@ -103,14 +105,15 @@ body{
 	position: absolute;
 	bottom: 0;
 	background-image: url('../assets/pipe_bottom.png');
+	content: "";
 }
-
 
 .pipeTop{
 	width: 52px;
 	position: absolute;
 	bottom: 0;
 	background-image: url('../assets/pipes.png');
+	
 }
 .pipeTop:after{
 	width: 52px;
@@ -118,6 +121,7 @@ body{
 	position: absolute;
 	top: 0
 	background-image: url('../assets/pipe_top.png');
+	content: "";
 }
 
 @keyframes ceilingMove {
@@ -149,6 +153,18 @@ body{
    0% { background-position: 0px 0px; }
    100% { background-position: 0px 100px; }
 }
+
+@keyframes pipeMove {
+   0% { left: 900px; }
+   100% { left: -100px; }
+}
+
+@-webkit-keyframes pipeMove {
+   0% { left: 900px; }
+   100% { left: -100px; }
+}
+
+
 
 .notransition {
   -webkit-transition: none !important;

@@ -13,6 +13,7 @@ var gamethread;
 var ground = document.getElementById("ground");
 var ceiling = document.getElementById("ceiling");
 var sprite = document.getElementById("sprite");
+var sky = document.getElementById("sky");
  
 var position = 280;
 var speed = 0;
@@ -61,8 +62,7 @@ function startScreen(){
 	ground.style.webkitAnimationPlayState = 'running';
 	ceiling.style.webkitAnimationPlayState = 'running';
 	sprite.style.webkitAnimationPlayState = 'paused'; //no sprite webkit animation for now
-	
-	
+
 
 }
 
@@ -82,8 +82,9 @@ function leftClick(){
 /* Game is running state. */
 function gameStart(){
 	currentState = gameRunningState;
-	
+
 	spriteJump();
+	drawPipes();
 	gamethread = setInterval( gameThread, FRAME_TIME );
 }
 
@@ -122,9 +123,9 @@ function detectCollision(){
 	spriteTop = bottom - 50;
 	
 	spriteTop = bottom - 50;
-	console.log("bottom: " + bottom );
-	console.log("top: " + spriteTop);
-	console.log("ceiling: " + ceiling.getBoundingClientRect().bottom ); 
+	//console.log("bottom: " + bottom );
+	//console.log("top: " + spriteTop);
+	//console.log("ceiling: " + ceiling.getBoundingClientRect().bottom ); 
 
 	if( bottom >= ground.getBoundingClientRect().top){
 		//ground collision - game over
@@ -146,11 +147,24 @@ function gameOver(){
 
 /* Pipes */
 function drawPipes(){
-   space = 80;
-   var limit = 420 - pipeheight - (space * 2); 
-   var topheight = Math.floor((Math.random() * limit) + space);
-   var bottomheight = (420 - pipeheight) - topheight;
-   var newpipe = $('<div class="pipe animated"><div class="pipeBottom" style="height: ' + topheight + 'px;"></div><div class="pipeTop" style="height: ' + bottomheight + 'px;"></div></div>');
-
+	/*space = 80;
+	limit = 500 - pipeHeight - (space * 2); 
+	bottomheight = Math.floor((Math.random() * limit) + space);
+	topheight = (500 - pipeHeight) - bottomheight;*/
+	space = 80;
+	limit = 500 - pipeHeight - (space); 
+	bottomheight = Math.floor((Math.random() * limit) + space);
+	topheight = 500 - bottomheight - pipeHeight;
+	
+	newpipe = $('<div class="pipe animated"><div class="pipeBottom" style="height: ' + bottomheight + 'px;"></div><div class="pipeTop" style="height: ' + topheight + 'px;"></div></div>');
+	
+	/*
+	space = 50;
+	limit = 400 - pipeHeight - (space * 2); 
+	bottomheight = Math.floor((Math.random() * limit) + space);
+	topheight = (400 - pipeHeight) - bottomheight;
+	*/
+	
+	$("#sky").append(newpipe);
 }
 
