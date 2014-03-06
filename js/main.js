@@ -22,6 +22,9 @@ var gravity = 0.3; // 0.5
 var jump = -10
 var gravity = 0.5*/
 
+var pipeHeight = 100;
+var pipeWidth = 52;
+var pipeQueue = new Array();
 
 
 /******* Functions ********/
@@ -143,7 +146,11 @@ function gameOver(){
 
 /* Pipes */
 function drawPipes(){
-
+   space = 80;
+   var limit = 420 - pipeheight - (space * 2); 
+   var topheight = Math.floor((Math.random() * limit) + space);
+   var bottomheight = (420 - pipeheight) - topheight;
+   var newpipe = $('<div class="pipe animated"><div class="pipeBottom" style="height: ' + topheight + 'px;"></div><div class="pipeTop" style="height: ' + bottomheight + 'px;"></div></div>');
 
 }
 

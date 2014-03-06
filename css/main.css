@@ -93,7 +93,15 @@ body{
 .pipeBottom{
 	width: 52px;
 	position: absolute;
+	top: 0;
+	background-image: url('../assets/pipes.png');
+}
 
+.pipeBottom:after{
+	width: 52px;
+	height: 26px;
+	position: absolute;
+	bottom: 0;
 	background-image: url('../assets/pipe_bottom.png');
 }
 
@@ -101,6 +109,14 @@ body{
 .pipeTop{
 	width: 52px;
 	position: absolute;
+	bottom: 0;
+	background-image: url('../assets/pipes.png');
+}
+.pipeTop:after{
+	width: 52px;
+	height: 26px;
+	position: absolute;
+	top: 0
 	background-image: url('../assets/pipe_top.png');
 }
 
