@@ -50,8 +50,8 @@ body{
 	background-repeat: repeat-x;
 	height: 16px;
 	top: 0;
-	animation: ceilingMove 5000ms linear infinite;
-	-webkit-animation: ceilingMove 5000ms linear infinite;
+	animation: ceilingMove 6000ms linear infinite;
+	-webkit-animation: ceilingMove 6000ms linear infinite;
 }
 
 #ground{
@@ -61,8 +61,8 @@ body{
 	background-repeat: repeat-x;
 	bottom: 40px;
 	height: 30px;
-	animation: groundMove 5000ms linear infinite;
-	-webkit-animation: groundMove 5000ms linear infinite;
+	animation: groundMove 6000ms linear infinite;
+	-webkit-animation: groundMove 6000ms linear infinite;
 }
 
 #sprite{
@@ -81,16 +81,14 @@ body{
 	-webkit-animation: spriteMove 5000ms linear infinite; */
 }
 
-#pipe{
+.pipe{
 	width: 52px;
 	height: 100%;
 	position: absolute;
-	left: -50px;
+	left: -200px;
 	
-	background-image: url('../assets/pipes.png');
-
-	-webkit-animation: pipeMove 5000ms linear;
-	animation: pipeMove 5000ms linear;
+	-webkit-animation: pipeMove 6000ms linear;
+	animation: pipeMove 6000ms linear;
 }
 
 .pipeBottom{
@@ -126,29 +124,29 @@ body{
 	width: 52px;
 	height: 26px;
 	position: absolute;
-	top: 0
+	top: 0;
 	background-image: url('../assets/pipe_top.png');
 	content: "";
 }
 
 @keyframes ceilingMove {
    0% { background-position: 0px 0px; }
-   100% { background-position: -400px 0px; }
+   100% { background-position: -1100px 0px; }
 }
 
 @-webkit-keyframes ceilingMove {
    0% { background-position: 0px 0px; }
-   100% { background-position: -400px 0px; }
+   100% { background-position: -1100px 0px; }
 }
 
 @keyframes groundMove {
    0% { background-position: 0px 0px; }
-   100% { background-position: -400px 0px; }
+   100% { background-position: -1100px 0px; }
 }
 
 @-webkit-keyframes groundMove {
    0% { background-position: 0px 0px; }
-   100% { background-position: -400px 0px; }
+   100% { background-position: -1100px 0px; }
 }
 
 @keyframes spriteMove {
@@ -163,12 +161,12 @@ body{
 
 @keyframes pipeMove {
    0% { left: 900px; }
-   100% { left: -150px; }
+   100% { left: -200px; }
 }
 
 @-webkit-keyframes pipeMove {
    0% { left: 900px; }
-   100% { left: -150px; }
+   100% { left: -200px; }
 }
 
 

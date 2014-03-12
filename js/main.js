@@ -89,7 +89,7 @@ function gameStart(){
 	spriteJump();
 	drawPipes();
 	gamethread = setInterval( gameThread, FRAME_TIME );
-	pipethread = setInterval( drawPipes, 10 );
+	//pipethread = setInterval( drawPipes, 100 );
 
 }
 
@@ -151,15 +151,10 @@ function gameOver(){
 }
 
 /* Pipes */
-function drawPipes(){
-	/*space = 80;
-	limit = 500 - pipeHeight - (space * 2); 
-	bottomheight = Math.floor((Math.random() * limit) + space);
-	topheight = (500 - pipeHeight) - bottomheight;*/
-	
+function drawPipes(){	
 	
 	screenHeight = document.getElementById('sky').clientHeight;
-	minHeight = 60;  //minimum pipe height  
+	minHeight = 80;  //minimum pipe height  
 	limit = screenHeight - pipeHeight - (minHeight);
 	bottomheight = Math.floor((Math.random() * limit) + minHeight);  
 	topheight = screenHeight - bottomheight - pipeHeight;
