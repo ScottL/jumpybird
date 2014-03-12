@@ -9,6 +9,7 @@ var gameRunningState = 1;
 var currentState;
 
 var gamethread;
+var pipethread;
 
 var ground = document.getElementById("ground");
 var ceiling = document.getElementById("ceiling");
@@ -62,6 +63,8 @@ function startScreen(){
 	ground.style.webkitAnimationPlayState = 'running';
 	ceiling.style.webkitAnimationPlayState = 'running';
 	sprite.style.webkitAnimationPlayState = 'paused'; //no sprite webkit animation for now
+	
+	pipeQueue = new Array();
 
 
 }
@@ -86,6 +89,8 @@ function gameStart(){
 	spriteJump();
 	drawPipes();
 	gamethread = setInterval( gameThread, FRAME_TIME );
+	pipethread = setInterval( drawPipes, 10 );
+
 }
 
 /* Change positions to update sprite */
@@ -156,12 +161,12 @@ function drawPipes(){
 	screenHeight = document.getElementById('sky').clientHeight;
 	minHeight = 60;  //minimum pipe height  
 	limit = screenHeight - pipeHeight - (minHeight);
-	
 	bottomheight = Math.floor((Math.random() * limit) + minHeight);  
 	topheight = screenHeight - bottomheight - pipeHeight;
 	
-	newpipe = $('<div class="pipe animated"><div class="pipeBottom" style="height: ' + bottomheight + 'px;"></div><div class="pipeTop" style="height: ' + topheight + 'px;"></div></div>');
+	newPipe = $('<div class="pipe animated"><div class="pipeBottom" style="height: ' + bottomheight + 'px;"></div><div class="pipeTop" style="height: ' + topheight + 'px;"></div></div>');
+	$("#sky").append(newPipe);
+	pipeQueue.push(newPipe);
 	
-	$("#sky").append(newpipe);
 }
 

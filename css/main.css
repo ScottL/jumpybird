@@ -85,17 +85,21 @@ body{
 	width: 52px;
 	height: 100%;
 	position: absolute;
+	left: -50px;
 	
 	background-image: url('../assets/pipes.png');
 
-	-webkit-animation: pipeMove 5000ms linear infinite;
-	animation: pipeMove 5000ms linear infinite;
+	-webkit-animation: pipeMove 5000ms linear;
+	animation: pipeMove 5000ms linear;
 }
 
 .pipeBottom{
 	width: 52px;
 	position: absolute;
 	top: 0;
+	
+	background-repeat: repeat-y;
+	background-position: center;
 	background-image: url('../assets/pipes.png');
 }
 
@@ -112,6 +116,9 @@ body{
 	width: 52px;
 	position: absolute;
 	bottom: 0;
+	
+	background-repeat: repeat-y;
+	background-position: center;
 	background-image: url('../assets/pipes.png');
 	
 }
@@ -156,12 +163,12 @@ body{
 
 @keyframes pipeMove {
    0% { left: 900px; }
-   100% { left: -100px; }
+   100% { left: -150px; }
 }
 
 @-webkit-keyframes pipeMove {
    0% { left: 900px; }
-   100% { left: -100px; }
+   100% { left: -150px; }
 }
 
 
