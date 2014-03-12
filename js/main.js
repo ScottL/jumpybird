@@ -6,6 +6,7 @@
 var FRAME_TIME = 1000 / 60; // 60 FPS
 var startScreenState = 0;
 var gameRunningState = 1;
+var endGameState = 2;
 var currentState;
 
 var gamethread;
@@ -89,7 +90,7 @@ function gameStart(){
 	spriteJump();
 	drawPipes();
 	gamethread = setInterval( gameThread, FRAME_TIME );
-	//pipethread = setInterval( drawPipes, 100 );
+	//pipethread = setInterval( drawPipes, 1000 );
 
 }
 
@@ -102,13 +103,6 @@ function spriteJump(){
 
 /* Main game loop */
 function gameThread(){
-	/* console.log( "gameThread!" );
-	speed += gravity;
-	position += speed;
-	position = 100;
-	sprite.style.top = position;
-	//$(srpite).css(top, position);
-	console.log( position ); */
 	
 	speed += gravity;
 	position += speed;
@@ -146,7 +140,12 @@ function detectCollision(){
 
 /* End the game when collision occurs */
 function gameOver(){
+		currentState = endGameState;
 		clearInterval(gamethread);
+		
+		
+		/* End game: Score screen. Restart button */
+		
 		startScreen();
 }
 
