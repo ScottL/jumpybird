@@ -59,8 +59,8 @@ function startScreen(){
 	//$('ground').addClass('notransition'); // to remove transition
 	//$('ceiling').addClass('notransition'); // to remove transition
 	
-	ground.style.webkitAnimationPlayState = 'running';
-	ceiling.style.webkitAnimationPlayState = 'running';
+	//ground.style.webkitAnimationPlayState = 'running';
+	//ceiling.style.webkitAnimationPlayState = 'running';
 	sprite.style.webkitAnimationPlayState = 'paused'; //no sprite webkit animation for now
 	
 	pipeQueue = new Array();
@@ -140,7 +140,7 @@ function detectCollision(){
 	var nextPipe = pipeQueue[0];
 	var topPipe = nextPipe.children(".pipeBottom");
 	var pipeTop = topPipe.offset().top + topPipe.height();
-	var pipeLeft = topPipe.offset().left; // for some reason it starts at the inner pipes offset, not the outer pipes.
+	var pipeLeft = topPipe.offset().left; 
 	var pipeRight = pipeLeft + pipeWidth;
 	var pipeBottom = pipeTop + pipeHeight;
    
@@ -150,7 +150,6 @@ function detectCollision(){
 	if(spriteRight > pipeLeft){
 		if(spriteTop > pipeTop && spriteBottom < pipeBottom){
 			//passed 
-			
 			console.log("spriteTop: " + spriteTop + "pipeTop: " + pipeTop);
 			console.log("spriteBottom: " + spriteBottom + "pipeBottom: " + pipeBottom);
 		}
@@ -158,7 +157,6 @@ function detectCollision(){
 			//collision
 			console.log("collide");
 			gameOver();
-		
 			return;
 		}
 	}
@@ -172,7 +170,9 @@ function gameOver(){
 		clearInterval(gamethread);
 		clearInterval(pipethread);
 		
-		
+		$(".animated").css('animation-play-state', 'paused');
+		$(".animated").css('-webkit-animation-play-state', 'paused');
+
 		/* End game: Score screen. Restart button */
 		
 		startScreen();
