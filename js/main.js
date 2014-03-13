@@ -115,8 +115,8 @@ function detectCollision(){
 	
 	spriteLeft = boundingBox.left;
 	spriteRight = boundingBox.right;
-	spriteBottom = boundingBox.bottom;
-	spriteTop = spriteBottom - 50;
+	spriteBottom = boundingBox.bottom - 5; //not accurate
+	spriteTop = spriteBottom - 50 + 10;
 	
 	//console.log("bottom: " + bottom );
 	//console.log("top: " + spriteTop);
@@ -139,14 +139,11 @@ function detectCollision(){
 		
 	var nextPipe = pipeQueue[0];
 	var topPipe = nextPipe.children(".pipeBottom");
-	var pipeTop = topPipe.offset().top + topPipe.height();
+	var pipeTop = topPipe.height() - 10;
 	var pipeLeft = topPipe.offset().left; 
 	var pipeRight = pipeLeft + pipeWidth;
 	var pipeBottom = pipeTop + pipeHeight;
    
-	
-	//console.log("pipeleft: " + pipeLeft);
-	 
 	if(spriteRight > pipeLeft){
 		if(spriteTop > pipeTop && spriteBottom < pipeBottom){
 			//passed 
@@ -161,6 +158,10 @@ function detectCollision(){
 		}
 	}
 	
+	//remove passed pipe from array
+	if(spriteLeft > pipeRight) {
+	  pipeQueue.splice(0, 1);
+	}
 	
 }
 
