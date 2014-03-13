@@ -19,13 +19,10 @@ var sky = document.getElementById("sky");
  
 var position = 280;
 var speed = 0;
-var jump = -6; // -6 or -8
+var jump = -6.5; // -6 or -8
 var gravity = 0.3; // 0.5 
-/*var speed = 0;
-var jump = -10
-var gravity = 0.5*/
 
-var pipeHeight = 100; //space to fly through
+var pipeHeight = 130; //space to fly through
 var pipeWidth = 52;
 var pipeQueue = new Array();
 
@@ -88,9 +85,8 @@ function gameStart(){
 	currentState = gameRunningState;
 
 	spriteJump();
-	drawPipes();
 	gamethread = setInterval( gameThread, FRAME_TIME );
-	//pipethread = setInterval( drawPipes, 1000 );
+	pipethread = setInterval( drawPipes, 1300 );
 
 }
 
@@ -136,12 +132,24 @@ function detectCollision(){
 		//ceiling collision - set speed to prevent jumping further
 		speed = 0;
 	}
+	
+	//Pipe collision
+	
+	nextPipe = pipeQueue[0];
+	pipefacebottom = nextPipe.children("pipe_bottom");
+	pipefacetop = nextPipe.children("pipe_top");
+   
+
+	
+	
+	
 }
 
 /* End the game when collision occurs */
 function gameOver(){
 		currentState = endGameState;
 		clearInterval(gamethread);
+		clearInterval(pipethread);
 		
 		
 		/* End game: Score screen. Restart button */
@@ -149,7 +157,7 @@ function gameOver(){
 		startScreen();
 }
 
-/* Pipes */
+/* Pipe creation */
 function drawPipes(){	
 	
 	screenHeight = document.getElementById('sky').clientHeight;
