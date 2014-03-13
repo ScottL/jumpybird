@@ -16,13 +16,14 @@ var ground = document.getElementById("ground");
 var ceiling = document.getElementById("ceiling");
 var sprite = document.getElementById("sprite");
 var sky = document.getElementById("sky");
+var pipe = document.getElementById("pipe");
  
 var position = 280;
 var speed = 0;
 var jump = -6.5; // -6 or -8
 var gravity = 0.3; // 0.5 
 
-var pipeHeight = 130; //space to fly through
+var pipeHeight = 160; //space to fly through
 var pipeWidth = 52;
 var pipeQueue = new Array();
 
@@ -112,18 +113,17 @@ function gameThread(){
 function detectCollision(){
 	var boundingBox = sprite.getBoundingClientRect();
 	
-	left = boundingBox.left;
-	right = boundingBox.right;
-	bottom = boundingBox.bottom;
-	spriteTop = bottom - 50;
+	spriteLeft = boundingBox.left;
+	spriteRight = boundingBox.right;
+	spriteBottom = boundingBox.bottom;
+	spriteTop = spriteBottom - 50;
 	
-	spriteTop = bottom - 50;
 	//console.log("bottom: " + bottom );
 	//console.log("top: " + spriteTop);
 	//console.log("ceiling: " + ceiling.getBoundingClientRect().bottom ); 
 
-	if( bottom >= ground.getBoundingClientRect().top){
-		//ground collision - game over
+	if( spriteBottom >= ground.getBoundingClientRect().top){
+		//ground collision
 		gameOver();
 	}
 	
@@ -133,14 +133,35 @@ function detectCollision(){
 		speed = 0;
 	}
 	
-	//Pipe collision
-	
-	nextPipe = pipeQueue[0];
-	pipefacebottom = nextPipe.children("pipe_bottom");
-	pipefacetop = nextPipe.children("pipe_top");
+	//Pipe collision detection
+	if(pipeQueue[0] == null)
+		return;
+		
+	var nextPipe = pipeQueue[0];
+	var topPipe = nextPipe.children(".pipeBottom");
+	var pipeTop = topPipe.offset().top + topPipe.height();
+	var pipeLeft = topPipe.offset().left; // for some reason it starts at the inner pipes offset, not the outer pipes.
+	var pipeRight = pipeLeft + pipeWidth;
+	var pipeBottom = pipeTop + pipeHeight;
    
-
 	
+	//console.log("pipeleft: " + pipeLeft);
+	 
+	if(spriteRight > pipeLeft){
+		if(spriteTop > pipeTop && spriteBottom < pipeBottom){
+			//passed 
+			
+			console.log("spriteTop: " + spriteTop + "pipeTop: " + pipeTop);
+			console.log("spriteBottom: " + spriteBottom + "pipeBottom: " + pipeBottom);
+		}
+		else {
+			//collision
+			console.log("collide");
+			gameOver();
+		
+			return;
+		}
+	}
 	
 	
 }
