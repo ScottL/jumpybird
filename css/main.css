@@ -129,6 +129,22 @@ body{
 	content: "";
 }
 
+#intro{
+	height: 170px;
+	width: 188px;
+	position: absolute;
+	top: 100px;
+	left: 80px;
+	opacity: 0;
+	
+	background-image: url('../assets/intro.png');
+	background-repeat: no-repeat;
+}
+
+
+
+
+
 @keyframes ceilingMove {
    0% { background-position: 0px 0px; }
    100% { background-position: -1100px 0px; }

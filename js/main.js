@@ -56,16 +56,22 @@ $(document).mousedown(function(event) {
 /* Start / Spash screen. Called when document is ready */
 function startScreen(){
 	currentState = startScreenState;
+	$(".animated").css('animation-play-state', 'running');
+	$(".animated").css('-webkit-animation-play-state', 'running');
 	//$('ground').addClass('notransition'); // to remove transition
 	//$('ceiling').addClass('notransition'); // to remove transition
 	
 	//ground.style.webkitAnimationPlayState = 'running';
 	//ceiling.style.webkitAnimationPlayState = 'running';
 	sprite.style.webkitAnimationPlayState = 'paused'; //no sprite webkit animation for now
-	
 	pipeQueue = new Array();
-
-
+	
+	var spritePos = $("#sprite").position().top;
+	var defaultPos = 300;
+	var toOriginal = Math.max(defaultPos - spritePos);
+	console.log( "sprite: " + spritePos);
+	$("#sprite").transition({ y: toOriginal + 'px'}, 1000, 'easeInQuad');
+	
 }
 
 /* Left screen click action */
@@ -177,15 +183,15 @@ function gameOver(){
 		var sprite = $("#sprite").position().top + $("#sprite").width();
 		var ground = $("#sky").height();
 		var drop = Math.max(0, ground - sprite);
-		$("#sprite").transition({ y: drop + 'px', rotate: 0}, 900, 'easeInOutQuad');
+		$("#sprite").transition({ y: drop + 'px', rotate: 0}, 1100, 'easeInOutQuad');
 		
 		/* End game: Score screen. Restart button */
 		startScreen();
 }
 
+
 /* Pipe creation */
 function drawPipes(){	
-	
 	screenHeight = document.getElementById('sky').clientHeight;
 	minHeight = 80;  //minimum pipe height  
 	limit = screenHeight - pipeHeight - (minHeight);
