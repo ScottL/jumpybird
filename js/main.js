@@ -174,8 +174,12 @@ function gameOver(){
 		$(".animated").css('animation-play-state', 'paused');
 		$(".animated").css('-webkit-animation-play-state', 'paused');
 
-		/* End game: Score screen. Restart button */
+		var sprite = $("#sprite").position().top + $("#sprite").width();
+		var ground = $("#sky").height();
+		var drop = Math.max(0, ground - sprite);
+		$("#sprite").transition({ y: drop + 'px', rotate: 0}, 900, 'easeInOutQuad');
 		
+		/* End game: Score screen. Restart button */
 		startScreen();
 }
 
