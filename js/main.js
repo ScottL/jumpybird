@@ -9,6 +9,10 @@ var gameRunningState = 1;
 var endScreenState = 2;
 var currentState;
 
+var groundCollision = 0;
+var pipeCollision = 1;
+var collisionType;
+
 var gamethread;
 var pipethread;
 
@@ -61,18 +65,19 @@ function startScreen(){
 	//$('ground').addClass('notransition'); // to remove transition
 	//$('ceiling').addClass('notransition'); // to remove transition
 	
-	sprite.style.webkitAnimationPlayState = 'paused'; //no sprite webkit animation for now
 	$(".pipe").remove();
 	pipeQueue = new Array();
 	
-	$("#sprite").css({ y: 0});
+	speed = 0;
+	position = 280;
+	$("#sprite").css({ y: 0, top: 0});
+	
 	var spritePos = $("#sprite").position().top;
 	var defaultPos = 300;
-	var toOriginal = Math.max(defaultPos - spritePos);
-	
+	var toOriginal = Math.max(defaultPos - spritePos);	
 	console.log( "Sprite pos: " +  spritePos);
 	console.log( "move  " +  toOriginal);
-	$("#sprite").transition({ y: toOriginal + 'px'}, 500, 'easeInQuad');
+	$("#sprite").transition({ top: toOriginal + 'px'}, 500, 'easeInQuad');
 	$("#intro").transition({ opacity: 1 }, 500, 'easeInQuad');
 	
 }
@@ -115,6 +120,7 @@ function gameThread(){
 	
 	speed += gravity;
 	position += speed;
+	detectCollision();
 	sprite.style.top = position + 'px';
 	detectCollision();
 	//console.log( "detect" )
@@ -123,8 +129,7 @@ function gameThread(){
 /* Sprite colliaion with floor, ceiling, or pipes
  using boounding boxes */
 function detectCollision(){
-	var boundingBox = sprite.getBoundingClientRect();
-	
+	var boundingBox = sprite.getBoundingClientRect();	
 	spriteLeft = boundingBox.left;
 	spriteRight = boundingBox.right;
 	spriteBottom = boundingBox.bottom - 5; //not accurate
@@ -135,7 +140,7 @@ function detectCollision(){
 	//console.log("ceiling: " + ceiling.getBoundingClientRect().bottom ); 
 
 	if( spriteBottom >= ground.getBoundingClientRect().top){
-		//ground collision
+		collisionType = groundCollision;
 		gameOver();
 	}
 	
@@ -165,6 +170,7 @@ function detectCollision(){
 		else {
 			//collision
 			console.log("collide");
+			collisionType = pipeCollision;
 			gameOver();
 			return;
 		}
@@ -185,12 +191,14 @@ function gameOver(){
 		$(".animated").css('animation-play-state', 'paused');
 		$(".animated").css('-webkit-animation-play-state', 'paused');
 
-		var sprite = $("#sprite").position().top + $("#sprite").width();
-		var ground = $("#sky").height();
-		var drop = Math.max(0, ground - sprite);
-		$("#sprite").transition({ y: drop + 'px'}, 1100, 'easeInOutQuad');
-		console.log( "Sprite pos: " +  sprite + "ground: " + ground);
-		console.log( "drop  " +  drop);
+		if (collisionType == pipeCollision){
+			var sprite = $("#sprite").position().top + $("#sprite").height();		
+			var ground = $("#sky").height();
+			var drop = Math.max( ground - sprite);
+			$("#sprite").transition({ y: drop + 'px'}, 800, 'easeInOutQuad');
+			console.log( "Sprite pos: " +  sprite + "ground: " + ground);
+			console.log( "drop  " +  drop);
+		}
 		scoreScreen();
 }
 
