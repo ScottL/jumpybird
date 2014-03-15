@@ -6,7 +6,7 @@
 var FRAME_TIME = 1000 / 60; // 60 FPS
 var startScreenState = 0;
 var gameRunningState = 1;
-var endGameState = 2;
+var endScreenState = 2;
 var currentState;
 
 var gamethread;
@@ -62,12 +62,17 @@ function startScreen(){
 	//$('ceiling').addClass('notransition'); // to remove transition
 	
 	sprite.style.webkitAnimationPlayState = 'paused'; //no sprite webkit animation for now
+	$(".pipe").remove();
 	pipeQueue = new Array();
 	
+	$("#sprite").css({ y: 0});
 	var spritePos = $("#sprite").position().top;
 	var defaultPos = 300;
 	var toOriginal = Math.max(defaultPos - spritePos);
-	$("#sprite").transition({ y: toOriginal + 'px'}, 1000, 'easeInQuad');
+	
+	console.log( "Sprite pos: " +  spritePos);
+	console.log( "move  " +  toOriginal);
+	$("#sprite").transition({ y: toOriginal + 'px'}, 500, 'easeInQuad');
 	$("#intro").transition({ opacity: 1 }, 500, 'easeInQuad');
 	
 }
@@ -82,6 +87,8 @@ function leftClick(){
 		gameStart();
 	} else if (currentState == gameRunningState){
 		spriteJump();
+	} else if (currentState == endScreenState){
+		startScreen();
 	}
 }
 
@@ -172,7 +179,6 @@ function detectCollision(){
 
 /* End the game when collision occurs */
 function gameOver(){
-		currentState = endGameState;
 		clearInterval(gamethread);
 		clearInterval(pipethread);
 		
@@ -182,10 +188,17 @@ function gameOver(){
 		var sprite = $("#sprite").position().top + $("#sprite").width();
 		var ground = $("#sky").height();
 		var drop = Math.max(0, ground - sprite);
-		$("#sprite").transition({ y: drop + 'px', rotate: 0}, 1100, 'easeInOutQuad');
-		
-		/* End game: Score screen. Restart button */
-		startScreen();
+		$("#sprite").transition({ y: drop + 'px'}, 1100, 'easeInOutQuad');
+		console.log( "Sprite pos: " +  sprite + "ground: " + ground);
+		console.log( "drop  " +  drop);
+		scoreScreen();
+}
+
+/* End game. Display sceen, restart button */
+function scoreScreen(){
+	currentState = endScreenState;
+	console.log("Click once more to restart");
+
 }
 
 
