@@ -61,16 +61,14 @@ function startScreen(){
 	//$('ground').addClass('notransition'); // to remove transition
 	//$('ceiling').addClass('notransition'); // to remove transition
 	
-	//ground.style.webkitAnimationPlayState = 'running';
-	//ceiling.style.webkitAnimationPlayState = 'running';
 	sprite.style.webkitAnimationPlayState = 'paused'; //no sprite webkit animation for now
 	pipeQueue = new Array();
 	
 	var spritePos = $("#sprite").position().top;
 	var defaultPos = 300;
 	var toOriginal = Math.max(defaultPos - spritePos);
-	console.log( "sprite: " + spritePos);
 	$("#sprite").transition({ y: toOriginal + 'px'}, 1000, 'easeInQuad');
+	$("#intro").transition({ opacity: 1 }, 500, 'easeInQuad');
 	
 }
 
@@ -90,6 +88,7 @@ function leftClick(){
 /* Game is running state. */
 function gameStart(){
 	currentState = gameRunningState;
+	$("#intro").transition({ opacity: 0 }, 500, 'easeInQuad');
 
 	spriteJump();
 	gamethread = setInterval( gameThread, FRAME_TIME );
