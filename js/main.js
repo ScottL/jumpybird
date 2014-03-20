@@ -32,6 +32,11 @@ var pipeWidth = 52;
 var pipeQueue = new Array();
 
 
+var soundIntro = new buzz.sound("assets/sound_intro.ogg");
+var soundJump = new buzz.sound("assets/sound_jump.ogg");
+var soundPassPipe = new buzz.sound("assets/sound_score.ogg");
+
+
 /******* Functions ********/
 $(document).ready(function(){
 	console.log( "ready!" );
@@ -79,6 +84,7 @@ function startScreen(){
 	console.log( "move  " +  toOriginal);
 	$("#sprite").transition({ top: toOriginal + 'px'}, 500, 'easeInQuad');
 	$("#intro").transition({ opacity: 1 }, 500, 'easeInQuad');
+	soundIntro.play();
 	
 }
 
@@ -112,7 +118,8 @@ function gameStart(){
 function spriteJump(){
 	// action of sprite will be here
 	speed = jump;
-
+	soundJump.stop();
+	soundJump.play();
 }
 
 /* Main game loop */
@@ -164,6 +171,7 @@ function detectCollision(){
 	if(spriteRight > pipeLeft){
 		if(spriteTop > pipeTop && spriteBottom < pipeBottom){
 			//passed 
+			soundPassPipe.play();
 			console.log("spriteTop: " + spriteTop + "pipeTop: " + pipeTop);
 			console.log("spriteBottom: " + spriteBottom + "pipeBottom: " + pipeBottom);
 		}
