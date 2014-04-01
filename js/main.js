@@ -13,6 +13,8 @@ var groundCollision = 0;
 var pipeCollision = 1;
 var collisionType;
 
+var score;
+
 var gamethread;
 var pipethread;
 
@@ -34,7 +36,7 @@ var pipeQueue = new Array();
 
 var soundIntro = new buzz.sound("assets/sound_intro.ogg");
 var soundJump = new buzz.sound("assets/sound_jump.ogg");
-var soundPassPipe = new buzz.sound("assets/sound_score.ogg");
+var soundScored = new buzz.sound("assets/sound_score.ogg");
 var soundCollision = new buzz.sound("assets/sound_collision.ogg");
 var soundDead = new buzz.sound("assets/sound_gg.ogg");
 
@@ -174,7 +176,7 @@ function detectCollision(){
 	if(spriteRight > pipeLeft){
 		if(spriteTop > pipeTop && spriteBottom < pipeBottom){
 			//passed 
-			soundPassPipe.play();
+			updateScore();
 			console.log("spriteTop: " + spriteTop + "pipeTop: " + pipeTop);
 			console.log("spriteBottom: " + spriteBottom + "pipeBottom: " + pipeBottom);
 		}
@@ -235,5 +237,10 @@ function drawPipes(){
 	$("#sky").append(newPipe);
 	pipeQueue.push(newPipe);
 	
+}
+
+function updateScore(){
+	score += 1;
+	soundScored.play();
 }
 
