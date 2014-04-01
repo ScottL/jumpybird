@@ -35,6 +35,8 @@ var pipeQueue = new Array();
 var soundIntro = new buzz.sound("assets/sound_intro.ogg");
 var soundJump = new buzz.sound("assets/sound_jump.ogg");
 var soundPassPipe = new buzz.sound("assets/sound_score.ogg");
+var soundCollision = new buzz.sound("assets/sound_collision.ogg");
+var soundDead = new buzz.sound("assets/sound_gg.ogg");
 
 
 /******* Functions ********/
@@ -148,6 +150,7 @@ function detectCollision(){
 
 	if( spriteBottom >= ground.getBoundingClientRect().top){
 		collisionType = groundCollision;
+		soundCollision.play();
 		gameOver();
 	}
 	
@@ -179,6 +182,7 @@ function detectCollision(){
 			//collision
 			console.log("collide");
 			collisionType = pipeCollision;
+			soundCollision.play();
 			gameOver();
 			return;
 		}
@@ -193,21 +197,22 @@ function detectCollision(){
 
 /* End the game when collision occurs */
 function gameOver(){
-		clearInterval(gamethread);
-		clearInterval(pipethread);
-		
-		$(".animated").css('animation-play-state', 'paused');
-		$(".animated").css('-webkit-animation-play-state', 'paused');
+	soundDead.play();
+	clearInterval(gamethread);
+	clearInterval(pipethread);
+	
+	$(".animated").css('animation-play-state', 'paused');
+	$(".animated").css('-webkit-animation-play-state', 'paused');
 
-		if (collisionType == pipeCollision){
-			var sprite = $("#sprite").position().top + $("#sprite").height();		
-			var ground = $("#sky").height();
-			var drop = Math.max( ground - sprite);
-			$("#sprite").transition({ y: drop + 'px'}, 800, 'easeInOutQuad');
-			console.log( "Sprite pos: " +  sprite + "ground: " + ground);
-			console.log( "drop  " +  drop);
-		}
-		scoreScreen();
+	if (collisionType == pipeCollision){
+		var sprite = $("#sprite").position().top + $("#sprite").height();		
+		var ground = $("#sky").height();
+		var drop = Math.max( ground - sprite);
+		$("#sprite").transition({ y: drop + 'px'}, 800, 'easeInOutQuad');
+		console.log( "Sprite pos: " +  sprite + "ground: " + ground);
+		console.log( "drop  " +  drop);
+	}
+	scoreScreen();
 }
 
 /* End game. Display sceen, restart button */
